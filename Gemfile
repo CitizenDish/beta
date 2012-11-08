@@ -9,14 +9,14 @@ gem 'kaminari'
 gem 'pusher'
 
 group :development do
-  gem 'rspec-rails', '>= 3.0.6'
+  gem "rspec-rails",        :git => "git://github.com/rspec/rspec-rails.git"
   gem 'factory_girl_rails'
   gem 'quiet_assets'
   gem 'debugger'
 end
 
 group :test do
-  gem 'rspec-rails', '>= 3.0.6'
+  gem "rspec-rails",        :git => "git://github.com/rspec/rspec-rails.git"
   gem "database_cleaner", ">= 0.8.0"
   gem "mongoid-rspec", ">= 1.4.6"
   gem "email_spec", ">= 1.2.1"
