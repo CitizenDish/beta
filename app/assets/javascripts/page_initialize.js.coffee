@@ -1,4 +1,4 @@
 $ () ->
-  view = window.Application.View
-  view.trigger 'loaded'
+#  view = window.Application.View
+#  view.trigger 'loaded'
 

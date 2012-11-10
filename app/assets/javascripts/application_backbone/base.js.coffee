@@ -1,3 +1,4 @@
+window.Application = {}
 
 Model = Backbone.Model.extend
   idAttribute: '_id'
@@ -5,27 +6,23 @@ Model = Backbone.Model.extend
 
 View = Backbone.View.extend
 
-  new: (bound_data, type = 'model') ->
-    if type == 'model'
-      return new ModelView model: bound_data
-    else if type == 'collection'
-      return new CollectionView collection: bound_data
-    else
-      return null
+  _Model: Model
 
   initialize: ->
-    @bind_object()
     @localize_events()
+    @bind_object()
     @inject_event_hooks()
-    @trigger 'initialize'
-
-  bind_object: () -> @
 
   localize_events: () ->
     _.bindAll @
 
+  bind_object: () ->
+    if @_Model?
+      @bind_model @model || new @_Model
+    else if @_Collection?
+      @bind_collection @collection || new @_Collection
+
   inject_event_hooks: () ->
-    @on 'initialize', @on_initialize
     @on 'refresh', @on_display_refresh
     @bound_object.on 'change', @on_change
     @bound_object.on 'reset', @on_reset
@@ -40,6 +37,14 @@ View = Backbone.View.extend
     @trigger 'refresh'
 
   on_display_refresh: () -> @
+
+  bind_model: (model) ->
+    @model = model
+    @bound_object = @model
+
+  bind_collection: (collection) ->
+    @collection = collection
+    @bound_object = @collection
 
 Collection = Backbone.Collection.extend
   model: Model
@@ -78,24 +83,4 @@ window.Application.Base =
   Model: Model
   View: View
   Collection: Collection
-
-
-# Micro View Implementations. Open views and append to instance definition based on model or collection.
-
-ModelView = View.extend
-  _view_type: 'model'
-  _Model: Model
-
-  bind_object: () ->
-    @model = new @_Model unless @model?
-    @bound_object = @model
-
-
-CollectionView = View.extend
-  _view_type: 'collection'
-  _Collection: Collection
-
-  bind_object: () ->
-    @collection = new @_Collection unless @collection?
-    @bound_object = @collection
 

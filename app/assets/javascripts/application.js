@@ -17,6 +17,5 @@
 //= require underscore
 //= require backbone
 //= require ./application_backbone/base
-//= require ./application_backbone/*
 //= require page_initialize
 //= require_tree .
