@@ -9,9 +9,9 @@ development:
       # Provides the hosts the default session can connect to. Must be an array
       # of host:port pairs. (required)
       hosts:
-        - alex.mongohq.com:10089
-      username: web_base_user
-      password: web_base_password
+        - localhost:27017
+#      username: web_base_user
+#      password: web_base_password
       options:
         # Change whether the session persists in safe mode by default.
         # (default: false)
@@ -65,8 +65,8 @@ test:
     default:
       database: web_base_test
       hosts:
-        - alex.mongohq.com:10090
-      username: web_base_user
-      password: web_base_password
+        - localhost:27017
+#      username: web_base_user
+#      password: web_base_password
       options:
         consistency: :strong
