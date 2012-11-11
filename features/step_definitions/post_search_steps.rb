@@ -1,27 +1,27 @@
 Given /^Proper authentication is met$/ do
-  pending
+  raise Exception
 end
 When /^Query is empty$/ do
-  pending
+  raise Exception
 end
 When /^I submit my query$/ do
-  pending
-end
-Then /^A default query criteria will be used$/ do
-  pending
+  raise Exception
 end
 When /^I should receive a successful result set$/ do
-  pending
+  raise Exception
 end
 When /^Editors last query will be cached$/ do
-  pending
+  raise Exception
 end
 When /^Query contains date range constraint$/ do
-  pending
-end
-Then /^A proper query criteria object will be used$/ do
-  pending
+  raise Exception
 end
 When /^Query contains multiple constraints$/ do
-  pending
+  raise Exception
+end
+Then /^A default query criteria will be used$/ do
+  raise Exception
+end
+Then /^A proper query criteria object will be used$/ do
+  raise Exception
 end
