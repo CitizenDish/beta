@@ -35,6 +35,7 @@ group :assets do
   gem 'jquery-rails'
   gem 'jquery-ui-rails'
   gem 'datejs-rails'
+  gem 'compass-rails'
 end
 
 
