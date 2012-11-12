@@ -13,6 +13,15 @@ end
 When /^I submit my query$/ do
   raise Exception
 end
+When /^Query contains (\w+) constraint$/ do |field|
+  raise Exception
+end
+When /^Query contains (\w+) constraint for (.+)$/ do |field, value|
+  raise Exception
+end
+When /^Query contains ((\w+\s)+)grouping$/ do |field|
+  raise Exception
+end
 Then /^A default query criteria will be used$/ do
   raise Exception
 end
@@ -28,15 +37,6 @@ end
 Then /^I should receive a successful result set$/ do
   raise Exception
 end
-When /^Query contains (\w+) constraint$/ do |field|
-  raise Exception
-end
-When /^Query contains (\w+) constraint for (.+)$/ do |field, value|
-  raise Exception
-end
-When /^Every post in this collection will match (.*) constraints$/ do
-  raise Exception
-end
-When /^Query contains ((\w+\s)+)grouping$/ do |field|
+Then /^Every post in this collection will match (.*) constraints$/ do
   raise Exception
 end
