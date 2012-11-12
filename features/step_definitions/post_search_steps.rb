@@ -31,6 +31,12 @@ end
 When /^Query contains (\w+) constraint$/ do |field|
   raise Exception
 end
+When /^Query contains (\w+) constraint for (.+)$/ do |field, value|
+  raise Exception
+end
 When /^Every post in this collection will match (.*) constraints$/ do
+  raise Exception
+end
+When /^Query contains (\w+) grouping$/ do |field|
   raise Exception
 end
