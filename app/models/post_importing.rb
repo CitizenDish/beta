@@ -1,28 +1,31 @@
 module PostImporting
-  def self.from_datasift
-
+  def self.import raw_post, type
+    import_module = if type == 'datasift' then DataSiftImport
+                    elsif type == 'customer review' then CustomerReviewImport
+                    else raise UndefinedTaskError end
+    begin
+      parsed_post = import_module.parse raw_post
+      parsed_post.identify_client!
+      parsed_post.original_post = json_post
+      parsed_post.save
+      parsed_post
+    rescue
+      puts "====== Error ======"
+      puts "Error occured while parsing the following post:"
+      puts raw_post
+      puts "====== ----- ======="
+    end
   end
 
   private
 
   module DataSiftImport
     def self.parse raw_post
-      begin
-        json_post = JSON.parse
-        post_type = json_post['interaction']['type']
-        parse_method = method("parse_#{post_type}")
-        parsed_post = parse_method.call json_post
-        parsed_post.identify_client!
-        parsed_post.original_post = json_post
-        parsed_post.save
-        return parsed_post
-      rescue
-        puts "======"
-        puts "Error occured while parsing the following post:"
-        puts raw_post
-        puts "======"
-      end
-      return nil
+      json_post = JSON.parse raw_post
+      post_type = json_post['interaction']['type']
+      parse_method = method("parse_#{post_type}")
+      parsed_post = parse_method.call json_post
+      return parsed_post
     end
 
     def self.parse_tweet json_tweet
@@ -34,16 +37,35 @@ module PostImporting
         :posted_date => interaction['created_at'],
         :content => interaction['content'],
         :rating => json_tweet['salience']['content']['sentiment'].to_i,
+        :link => interaction['link'] || interaction['author']['link'],
         :klout => json_tweet['klout']
-      post.title = "Tweet from #{post.author}"
+      post.title = "Tweet from #{post.author.name}"
     end
 
     def self.parse_facebook json_facebook
-
+      interaction = json_facebook['interaction']
+      post = Post.create :channel => PostChannel.Twitter,
+                         :source => PostSource.from_string(interaction['source']),
+                         :type => 'facebook',
+                         :author => PostAuthor.from_string(interaction['author']['username'] || interaction['author']['name'] rescue 'anonymous'),
+                         :posted_date => interaction['created_at'],
+                         :content => interaction['content'],
+                         :rating => (json_facebook['salience']['content']['sentiment'] || json_facebook['salience']['title']['sentiment']).to_i,
+                         :link => interaction['link'] || interaction['author']['link']
+      post.title = interaction['title'] || "Facebook post from #{post.author.name}"
     end
 
     def self.parse_blog json_blog
-
+      interaction = json_blog['interaction']
+      post = Post.create :channel => PostChannel.Twitter,
+                         :source => PostSource.from_string(interaction['source']),
+                         :type => 'blog',
+                         :author => PostAuthor.from_string(interaction['author']['username'] || interaction['author']['name'] rescue 'anonymous'),
+                         :posted_date => interaction['created_at'],
+                         :content => interaction['content'],
+                         :rating => (json_blog['salience']['content']['sentiment'] || json_blog['salience']['title']['sentiment']).to_i,
+                         :link => interaction['link'] || interaction['domain']
+      post.title = interaction['title'] || "Blog post from #{post.author.name}"
     end
 
     def self.parse_news json_news
