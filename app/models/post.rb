@@ -8,7 +8,6 @@ class Post < BaseDataModel
   belongs_to :author, :class_name => 'PostAuthor'
 
   # Tagging Engine
-  has_and_belongs_to_many :classifications, :class_name => 'ClassificationRule'
   has_and_belongs_to_many :tags, :class_name => 'TagRule'
 
   # Static fields
@@ -16,14 +15,15 @@ class Post < BaseDataModel
   field :posted_date, :type => Date
   field :title, :type => String
   field :content, :type => String
+  field :web_address, :type => String
 
   # Edited
-  field :sentiment, :type => String, :default => 'neutral'
   field :status, :type => String, :default => 'untagged'
+  has_and_belongs_to_many :classifications, :class_name => 'ClassificationRule'
 
   # Optional
   field :product_name, :type => String, :default => nil
-  field :rating, :type => Integer, :default => nil
+  field :rating, :type => Integer, :default => 0
   field :demographics, :type => String, :default => nil
   field :klout, :type => String, :default => nil
 
@@ -35,11 +35,32 @@ class Post < BaseDataModel
 
   ## Validations
 
-  validates_presence_of :content, :sentiment, :posted_date
+  validates_presence_of :content, :sentiment, :posted_date, :web_address
+  validates_numericality_of :rating
   validates_associated :author, :channel, :source, :type, :client
   validates_uniqueness_of :custom_hash
 
-  before_save :assign_custom_hash
+  before_save :downcase_fields!, :assign_custom_hash
+
+  def downcase_fields!
+    @content = content.downcase
+    @title = title.downcase
+    @product_name = title.downcase
+  end
+
+  def identify_client!
+    clients = Client.all
+    clients.each do |c|
+      name = c[:name].downcase
+      self.client = c if content_or_title_includes?(name)
+    end
+  end
+
+  def sentiment
+    sentiment_value = if rating < 0 then 'negative'
+    elsif rating > 0 then 'positive'
+    else 'neutral' end
+  end
 
   def assign_custom_hash
     @custom_hash = generate_custom_hash
@@ -52,4 +73,18 @@ class Post < BaseDataModel
     hash_object[:content] = content
     hash_object[:date] = posted_date
   end
+
+  private
+  def content_or_title_includes? value
+    content_inlcudes?(name) || title_includes?(name)
+  end
+
+  def content_includes? value
+    content.include? value
+  end
+
+  def title_includes? value
+    title.include? value
+  end
+
 end

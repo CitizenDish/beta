@@ -1,0 +1,5 @@
+class PostChannel < BaseDataModel
+
+
+
+end
