@@ -45,7 +45,7 @@ Feature: Post Visual Analytics
     Given Proper authentication is met
     When I submit my query
     And Query contains date constraint for current month
-    And Query contains blog grouping
+    And Query contains customer review grouping
     And Query contains client grouping
     Then I should receive a successful result set
 

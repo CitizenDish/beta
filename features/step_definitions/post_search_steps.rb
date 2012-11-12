@@ -37,6 +37,6 @@ end
 When /^Every post in this collection will match (.*) constraints$/ do
   raise Exception
 end
-When /^Query contains (\w+) grouping$/ do |field|
+When /^Query contains ((\w+\s)+)grouping$/ do |field|
   raise Exception
 end

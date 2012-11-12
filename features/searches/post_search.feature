@@ -1,7 +1,7 @@
 Feature: Post Search
   In order for editors to organize their workflow
   An editor
-  Should be able to create arbitrary queries
+  Should be able to create arbitrary queries on post data
 
     Scenario: Editor enters no constraints
       Given Proper authentication is met

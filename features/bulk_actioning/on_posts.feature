@@ -3,9 +3,6 @@ Feature: Bulk Edit Posts
   An editor
   Should be able to perform actions on multiple posts
 
-
-  ### Success Message Expected
-
   Scenario: Editor selects positive sentiment action
     Given A non-empty collection of posts
     When I click on the positive sentiment icon
