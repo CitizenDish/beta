@@ -10,6 +10,7 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
+//= require sinon
 //= require jquery
 //= require jquery_ujs
 //= require jquery.ui.all
@@ -19,3 +20,4 @@
 //= require ./application_backbone/base
 //= require page_initialize
 //= require_tree .
+

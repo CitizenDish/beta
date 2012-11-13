@@ -13,6 +13,7 @@ group :development do
   gem 'factory_girl_rails'
   gem 'quiet_assets'
   gem 'debugger'
+  gem 'jasmine'
 end
 
 group :test do
@@ -24,7 +25,9 @@ group :test do
   gem "capybara", ">= 1.1.2"
   gem 'factory_girl_rails'
   gem "cucumber-rails", ">= 1.3.0", :require => false
+  gem 'jasmine'
 end
+
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -37,6 +40,12 @@ group :assets do
   gem 'datejs-rails'
   gem 'compass-rails'
 end
+
+
+gem 'guard'
+gem 'guard-coffeescript'
+gem 'guard-livereload'
+gem 'rb-fsevent', '~> 0.9.1'
 
 
 gem 'unicorn'
