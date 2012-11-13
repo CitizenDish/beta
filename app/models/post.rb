@@ -76,7 +76,7 @@ class Post < BaseDataModel
 
   private
   def content_or_title_includes? value
-    content_inlcudes?(name) || title_includes?(name)
+    content_inlcudes?(value) || title_includes?(value)
   end
 
   def content_includes? value
