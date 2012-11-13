@@ -6,7 +6,7 @@ module PostImporting
     begin
       parsed_post = import_module.parse raw_post
       parsed_post.identify_client!
-      parsed_post.original_post = json_post
+      parsed_post.original_post = raw_post
       parsed_post.save
       parsed_post
     rescue
@@ -25,6 +25,7 @@ module PostImporting
       post_type = json_post['interaction']['type']
       parse_method = method("parse_#{post_type}")
       parsed_post = parse_method.call json_post
+      parsed_post.demographics = json_post['demographics'] unless json_post['demographics'].nil?
       return parsed_post
     end
 
@@ -42,6 +43,8 @@ module PostImporting
       post.title = "Tweet from #{post.author.name}"
     end
 
+
+    "{'interaction': { 'source': 'facebook', 'type': 'facebook', 'author': { 'username': 'test_user' }, 'created_at': "
     def self.parse_facebook json_facebook
       interaction = json_facebook['interaction']
       post = Post.create :channel => PostChannel.Twitter,
