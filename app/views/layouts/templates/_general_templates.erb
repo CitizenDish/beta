@@ -1,0 +1,128 @@
+<script type="text/template" id="master_header_template">
+  <%= logo %>
+  <%= navigation %>
+  <div id="client_logo"><%= image_tag("images/the-north-face.png", height: 38) %></div>
+</script>
+
+<script type='text/template' id='master_footer_template'>
+
+</script>
+
+<script type="text/template" id="main_navigation_template">
+  <%= data_link 'dashboard' %>
+  <%= data_link 'editor console' %>
+  <%= data_link 'tools' %>
+  <%= data_link 'search' %>
+  <%= data_link 'log out' %>
+</script>
+
+<script type='text/template' id='dashboard_template'>
+
+</script>
+
+<script type='text/template' id='editor_console_template'>
+
+</script>
+
+<script type='text/template' id='search_template'>
+  <section class='left'>
+
+    <div class='field'>
+      <label> Date posted </label>
+      <select class='dates'>
+        <option>current month</option>
+        <option>prior month</option>
+        <option>last 30 days</option>
+        <option>last 60 days</option>
+        <option>last 90 days</option>
+        <option>is between</option>
+      </select>
+      <div class='none'>
+        <input type='text' placeholder='date_posted_range_begin'/>
+        |
+        <input type='text' placeholder='date_posted_range_end'/>
+      </div>
+    </div>
+
+    <div class='field'>
+      <label> Type </label>
+      <select class='types'>
+        <option></option>
+        <option>twitter</option>
+        <option>facebook</option>
+        <option>blog</option>
+        <option>customer review</option>
+      </select>
+    </div>
+    </div>
+
+    <div class='field'>
+      <label> Channel </label>
+      <select class="channels">
+        <option></option>
+        <option>social media</option>
+        <option>blogs</option>
+        <option>customer reviews</option>
+        <option>news</option>
+      </select>
+    </div>
+    </div>
+
+    <div class='field'>
+      <label> Client </label>
+      <select class='clients' disabled>
+        <option></option>
+        <option>the north face</option>
+        <option>salomon</option>
+        <option>patagonia</option>
+      </select>
+    </div>
+    </div>
+
+  </section>
+  <section class='right'>
+
+    <div class='field title'>
+      <label> Title </label>
+      <input type='text' placeholder="{{title}}"/>
+    </div>
+    <div class='field source'>
+      <label>Source</label>
+      <input type='text' placeholder='{{source}}'/>
+    </div>
+    <div class='field content'>
+      <label>Content</label>
+      <input type='text' placeholder='{{content}}'/>
+    </div>
+
+    <div class='field download_result'>
+      <label> Download Results? </label>
+      <input type='checkbox' placeholder="{{download_results}}" />
+    </div>
+
+  </section>
+  <div class='clear'></div>
+  <a data-link='search'>Search</a>
+</script>
+
+<script type="text/template" id="tools_template">
+  <li>Tool</li>  <li>Tool</li>  <li>Tool</li>  <li>Tool</li><li>Tool</li>  <li>Tool</li>  <li>Tool</li>  <li>Tool</li>
+  <li>Tool</li>  <li>Tool</li>  <li>Tool</li>  <li>Tool</li><li>Tool</li>  <li>Tool</li>  <li>Tool</li>  <li>Tool</li>
+  <li>Tool</li>  <li>Tool</li>  <li>Tool</li>  <li>Tool</li><li>Tool</li>  <li>Tool</li>  <li>Tool</li>  <li>Tool</li>
+  <li>Tool</li>  <li>Tool</li>  <li>Tool</li>  <li>Tool</li><li>Tool</li>  <li>Tool</li>  <li>Tool</li>  <li>Tool</li>
+  <li>Tool</li>  <li>Tool</li>  <li>Tool</li>  <li>Tool</li><li>Tool</li>  <li>Tool</li>  <li>Tool</li>  <li>Tool</li>
+  <li>Tool</li>  <li>Tool</li>  <li>Tool</li>  <li>Tool</li><li>Tool</li>  <li>Tool</li>  <li>Tool</li>  <li>Tool</li>
+</script>
+
+<script type="text/template" id="modal_template">
+  <header>
+    <%= logo %>
+    <%= data_link 'X' %>
+  </header>
+  <article>
+  </article>
+</script>
+
+<script type='text/template' id='tab_template'>
+  <a data-link='{{name}}'>{{name}} ({{total}})</a>
+</script>
