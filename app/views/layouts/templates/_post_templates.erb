@@ -1,0 +1,68 @@
+<script type="text/template" id="post_collection_template">
+  <thead>
+  <tr>
+    <th>Posted</th>
+    <th>Source</th>
+    <th>Author</th>
+    <th>Type</th>
+    <th>Title/Excerpt</th>
+    <th>Sentiment</th>
+    <th>Save</th>
+  </tr>
+  </thead>
+  <tbody>
+
+  </tbody>
+</script>
+
+<script type="text/template" id="post_template">
+  <td class='cell_left'>{{interaction.created_at}}
+    <div class='fine_print'>{{ id }}</div>
+  </td>
+  <td>{{interaction.source}} ({{ channel.name }}) </td>
+  <td class='cell_left'>{{interaction.author.name || interaction.author.username}}</td>
+  <td>{{interaction.type}}</td>
+  <td class='cell_left'>
+    <a href='{{interaction.link}}' target='_blank'>{{interaction.title}}</a>
+    <p>{{interaction.content}}</p>
+  </td>
+  <td>
+    <div class='sentiment_block {{ status }}'>
+      <div class='action_block'>
+        <div class='remove_actions'>
+          <%= data_link 'junk', :class => 'junk' %>
+          <%= data_link 'X', :class => 'duplicate' %>
+        </div>
+        <div class='sentiment_actions'>
+          <%= data_link 'sentiment', :text => '-', 'data-sentiment' => 'negative' %>
+          <%= data_link 'sentiment', :text => 'Neutral', 'data-sentiment' => 'neutral' %>
+          <%= data_link 'sentiment', :text => '+', 'data-sentiment' => 'positive' %>
+        </div>
+      </div>
+      <div class='classifications'>
+      </div>
+    </div>
+  </td>
+  <td class='cell_left'>
+    <%= data_link 'save' %>
+  </td>
+</script>
+
+<script type='text/template' id='create_classification_rule_template'>
+  <h4>Match Terms to Rule</h4>
+  <input type='text' name='terms' value='{{terms}}'></input>
+  <select class='classifications'>
+    <option></option>
+  </select>
+  <input type='submit'></input>
+</script>
+
+<script type="text/template" id='demographic_template'></script>
+
+<script type='text/template' id='salience_template'>
+
+</script>
+
+<script type="text/template" id="klout_template">
+  {{score}}
+</script>

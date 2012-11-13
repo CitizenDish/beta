@@ -5,7 +5,6 @@
     <title><%= content_for?(:title) ? yield(:title) : "Rails3 Mongoid Devise" %></title>
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Rails3 Mongoid Devise" %>">
     <%= stylesheet_link_tag "application", :media => "all" %>
-    <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
     <%= yield(:head) %>
   </head>
@@ -21,5 +20,8 @@
       <footer>
       </footer>
     </div> <!--! end of #container -->
+
+    <%= javascript_include_tag "application" %>
+
   </body>
 </html>
