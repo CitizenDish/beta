@@ -16,7 +16,8 @@ module ApplicationHelper
   end
 
   def data_link name, options = {}
-
+    merged_options = { 'data-link' => name }.merge options
+    content_tag 'a', name.titleize, merged_options
   end
 
 

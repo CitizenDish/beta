@@ -9,11 +9,16 @@
 </script>
 
 <script type="text/template" id="main_navigation_template">
-  <%= data_link 'dashboard' %>
-  <%= data_link 'editor console' %>
-  <%= data_link 'tools' %>
-  <%= data_link 'search' %>
-  <%= data_link 'log out' %>
+  <% if user_signed_in? %>
+      <%= data_link 'dashboard' %>
+      <%= data_link 'editor console' %>
+      <%= data_link 'tools' %>
+      <%= data_link 'search' %>
+      <%= data_link 'edit account' %>
+      <%= link_to 'Logout', destroy_user_session_path, :method => 'delete' %>
+  <% else %>
+      <%= link_to 'Login', new_user_session_path %>
+  <% end %>
 </script>
 
 <script type='text/template' id='dashboard_template'>

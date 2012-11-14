@@ -10,11 +10,12 @@
   </head>
   <body>
     <div id="wrapper">
-      <%= render 'layouts/navigation' %>
+      <%= backbone_view 'MainNavigation' %>
       <%= render 'layouts/messages' %>
       <section id='page-content'>
         <%= yield %>
       </section>
+      <%= backbone_view 'Footer' %>
     </div> <!--! end of #container -->
      <span id="templates">
 
