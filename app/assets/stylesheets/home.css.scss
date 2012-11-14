@@ -9,6 +9,8 @@
 }
 
 input{
+  margin: 10px;
+
   -webkit-box-shadow:2px 2px 2px 2px #333333, 2px 2px 50px 2px #97A7B0;
   -moz-box-shadow:2px 2px 2px 2px #333333, 2px 2px 50px 2px #97A7B0;
   -o-box-shadow:2px 2px 2px 2px #333333, 2px 2px 50px 2px #97A7B0;
@@ -43,4 +45,10 @@ body{
   width: 250px;
   height: 38px;
   background-image: url(/assets/logo.png)
+}
+
+#error_explanation{
+  background-color: #BFF000;
+  opacity: 0.8;
+
 }
