@@ -1,15 +1,18 @@
 @import 'compass';
 
-#main{
+#page-content {
   margin: 0 auto;
   min-width: 200px;
-  max-width: 500px;
+  max-width: 1024px;
   min-height: 200px;
-  max-height: 500px;
+  max-height: 800px;
+  width: 500px;
+  height: 500px;
 }
 
 input{
   margin: 10px;
+  padding: 10px;
 
   -webkit-box-shadow:2px 2px 2px 2px #333333, 2px 2px 50px 2px #97A7B0;
   -moz-box-shadow:2px 2px 2px 2px #333333, 2px 2px 50px 2px #97A7B0;
@@ -42,6 +45,7 @@ body{
 }
 
 .application-logo{
+  margin: 0 auto;
   width: 250px;
   height: 38px;
   background-image: url(/assets/logo.png)

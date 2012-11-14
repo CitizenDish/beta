@@ -15,6 +15,7 @@ $replace = () ->
 $load_view = (place_holder_element) ->
   element = $ place_holder_element
   view_name = element.data 'view'
+  console.log "new #{view_name}"
   view = new Application[view_name].View
   view.render()
   element.replaceWith view.el

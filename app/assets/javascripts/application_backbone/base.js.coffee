@@ -12,9 +12,11 @@ View = Backbone.View.extend
   _ChildView: null
 
   _template_only: false
+  _template_id: null
 
   _draggable: false
   _sortable: false
+  _$requires_replace: false
 
   _collection_parent_element: null
 
@@ -22,9 +24,9 @@ View = Backbone.View.extend
     @localize_events()
     @bind_object()
     @inject_event_hooks()
-    @setup_view_elements
-    @setup_jquery_ui
-    @trigger 'initialize complete'
+    @setup_view_elements()
+    @setup_jquery_ui()
+    @initialize_complete()
 
   localize_events: () ->
     _.bindAll @
@@ -36,18 +38,19 @@ View = Backbone.View.extend
       @bind_collection @collection || new @_Collection
 
   inject_event_hooks: () ->
-    @on 'initialize complete', @initialize_complete
     @on 'refresh', @on_display_refresh
     @bound_object.on 'change', @on_change
     @bound_object.on 'reset', @on_reset
 
   setup_jquery_ui: () ->
-    @$el.draggable() if @_draggable?
-    @$el.sortable() if @_sortable?
+    @$el.draggable() if @_draggable
+    @$el.sortable() if @_sortable
 
   setup_view_elements: () ->
-    if @template_id?
-      @template = Application.HtmlTemplates.find_id @template_id
+    if @_template_id?
+      id = @id || @_template_id
+      @$el.attr 'id', id
+      @_template = Application.HtmlTemplates.find_id @_template_id
 
   initialize_complete: () -> @
 
@@ -78,11 +81,12 @@ View = Backbone.View.extend
       @render_model_view()
     else if @collection?
       @render_collection_view()
+    Application.$replace() if @_$requires_replace
     @trigger 'refresh'
 
   render_template: (data = {} ) ->
-    return unless @template
-    template_content = @template data
+    return unless @_template
+    template_content = @_template data
     @$el.html template_content
 
   render_model_view: () ->
@@ -146,9 +150,24 @@ Collection = Backbone.Collection.extend
     @_last_updated_at = Date.now()
     response.results
 
+Router = Backbone.Router.extend
+
+  _history: []
+
+  initialize : () ->
+    @localize_events()
+
+  localize_events: () ->
+    _.bindAll @
+
+  to : (route) ->
+    @_history.push route
+    @navigate route, true
+
 
 window.Application.Base =
   Model: Model
   View: View
   Collection: Collection
+  Router: Router
 

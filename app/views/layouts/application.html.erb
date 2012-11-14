@@ -9,16 +9,12 @@
     <%= yield(:head) %>
   </head>
   <body>
-    <div id="container" class="container">
-      <header>
-        <%= render 'layouts/navigation' %>
-        <%= render 'layouts/messages' %>
-      </header>
-      <div id="main" role="main">
+    <div id="wrapper">
+      <%= render 'layouts/navigation' %>
+      <%= render 'layouts/messages' %>
+      <section id='page-content'>
         <%= yield %>
-      </div>
-      <footer>
-      </footer>
+      </section>
     </div> <!--! end of #container -->
      <span id="templates">
 
