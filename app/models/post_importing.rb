@@ -44,7 +44,6 @@ module PostImporting
     end
 
 
-    "{'interaction': { 'source': 'facebook', 'type': 'facebook', 'author': { 'username': 'test_user' }, 'created_at': "
     def self.parse_facebook json_facebook
       interaction = json_facebook['interaction']
       post = Post.create :channel => PostChannel.Twitter,
@@ -69,6 +68,10 @@ module PostImporting
                          :rating => (json_blog['salience']['content']['sentiment'] || json_blog['salience']['title']['sentiment']).to_i,
                          :link => interaction['link'] || interaction['domain']
       post.title = interaction['title'] || "Blog post from #{post.author.name}"
+    end
+
+    def self.parse_youtube json_youtube
+      raise UndefinedTaskError
     end
 
     def self.parse_news json_news
