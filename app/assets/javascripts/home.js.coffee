@@ -12,6 +12,8 @@ Base = Application.Base
 Model = Base.Model.extend {}
 
 View = Base.View.extend
+  _Model: Model
+
   className: 'active_view'
 
 

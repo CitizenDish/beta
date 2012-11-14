@@ -1,4 +1,7 @@
-class Post < BaseDataModel
+class Post
+  include Mongoid::Document
+  include Mongoid::Timestamps
+  include Mongoid::Paranoia
 
   belongs_to :channel, :class_name => 'PostChannel'
   belongs_to :source, :class_name => 'PostSource'

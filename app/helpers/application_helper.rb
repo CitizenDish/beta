@@ -7,6 +7,18 @@ module ApplicationHelper
     generate_view html_element, options
   end
 
+  def logo
+    #generate_view 'data-view' => 'ApplicationLogo'
+  end
+
+  def navigation
+
+  end
+
+  def data_link name, options = {}
+
+  end
+
 
   def generate_view(element = "div", options)
     content_tag(element, nil, options)

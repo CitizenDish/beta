@@ -6,7 +6,8 @@ Model = Backbone.Model.extend
 
 View = Backbone.View.extend
 
-  _Model: Model
+  _Model: null
+  _Collection: null
 
   _ChildView: null
 
@@ -56,7 +57,10 @@ View = Backbone.View.extend
   on_reset: () ->
     @trigger 'refresh'
 
-  on_display_refresh: () -> @
+  on_display_refresh: () ->
+    console.log '==='
+    console.log @
+    console.log 'Refreshed'
 
   bind_model: (model) ->
     @model = model
@@ -74,6 +78,7 @@ View = Backbone.View.extend
       @render_model_view()
     else if @collection?
       @render_collection_view()
+    @trigger 'refresh'
 
   render_template: (data = {} ) ->
     return unless @template
@@ -89,7 +94,7 @@ View = Backbone.View.extend
     if @_collection_parent_element?
       collection_element = @$el.find @_collection_parent_element
     collection_element.empty()
-    append_children collection_element
+    @append_children collection_element
 
   append_children: (element) ->
     return unless @collection?
@@ -116,6 +121,13 @@ Collection = Backbone.Collection.extend
   _order: {}
   _last_updated_at: {}
 
+  initialize: () ->
+    @localize_events()
+    @_refresh() if @_pre_fetch
+
+  localize_events: () ->
+    _.bindAll @
+
   _where: (conditions) ->
     @_where_filter = conditions
     @where conditions          #local filter
@@ -131,7 +143,7 @@ Collection = Backbone.Collection.extend
   parse: (response) ->
     @_paging = response.paging
     @_authentication_status = response.authentication_status
-    @_last_updated_at = new Date().now()
+    @_last_updated_at = Date.now()
     response.results
 
 

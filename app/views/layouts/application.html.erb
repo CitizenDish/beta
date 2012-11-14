@@ -20,7 +20,12 @@
       <footer>
       </footer>
     </div> <!--! end of #container -->
+     <span id="templates">
 
+	    <%= render partial: "templates/general_templates" %>
+        <%= render partial: "templates/post_templates" %>
+
+     </span>
     <%= javascript_include_tag "application" %>
 
   </body>

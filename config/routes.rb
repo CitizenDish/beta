@@ -5,5 +5,7 @@ Rails3MongoidDevise::Application.routes.draw do
   devise_for :users
   resources :users
 
+  match 'posts' => 'post#index'
+
   root :to => redirect('/users/sign_in')
 end
