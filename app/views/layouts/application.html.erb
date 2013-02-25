@@ -10,17 +10,15 @@
   </head>
   <body>
     <div id="wrapper">
-      <%= backbone_view 'MainNavigation' %>
+      <%= backbone_view 'header' %>
       <%= render 'layouts/messages' %>
       <section id='page-content'>
         <%= yield %>
       </section>
-      <%= backbone_view 'Footer' %>
     </div> <!--! end of #container -->
      <span id="templates">
 
 	    <%= render partial: "templates/general_templates" %>
-        <%= render partial: "templates/post_templates" %>
 
      </span>
     <%= javascript_include_tag "application" %>
