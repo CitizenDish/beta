@@ -1,0 +1,31 @@
+mongod --help for help and startup options
+Fri Nov  9 00:57:41 [initandlisten] MongoDB starting : pid=56313 port=27017 dbpath=/data/db/ 64-bit host=Davids-MacBook-Pro.local
+Fri Nov  9 00:57:41 [initandlisten] db version v2.0.6, pdfile version 4.5
+Fri Nov  9 00:57:41 [initandlisten] git version: e1c0cbc25863f6356aa4e31375add7bb49fb05bc
+Fri Nov  9 00:57:41 [initandlisten] build info: Darwin erh2.10gen.cc 9.8.0 Darwin Kernel Version 9.8.0: Wed Jul 15 16:55:01 PDT 2009; root:xnu-1228.15.4~1/RELEASE_I386 i386 BOOST_LIB_VERSION=1_40
+Fri Nov  9 00:57:41 [initandlisten] options: {}
+Fri Nov  9 00:57:41 [initandlisten] journal dir=/data/db/journal
+Fri Nov  9 00:57:41 [initandlisten] recover : no journal files present, no recovery needed
+Fri Nov  9 00:57:42 [websvr] admin web console waiting for connections on port 28017
+Fri Nov  9 00:57:42 [initandlisten] waiting for connections on port 27017
+Fri Nov  9 00:57:48 [initandlisten] connection accepted from 127.0.0.1:58523 #1
+Fri Nov  9 00:57:51 got kill or ctrl c or hup signal 1 (Hangup: 1), will terminate after current cmd ends
+Fri Nov  9 00:57:51 [interruptThread] now exiting
+Fri Nov  9 00:57:51 dbexit: 
+Fri Nov  9 00:57:51 [interruptThread] shutdown: going to close listening sockets...
+Fri Nov  9 00:57:51 [interruptThread] closing listening socket: 7
+Fri Nov  9 00:57:51 [interruptThread] closing listening socket: 8
+Fri Nov  9 00:57:51 [interruptThread] closing listening socket: 9
+Fri Nov  9 00:57:51 [interruptThread] removing socket file: /tmp/mongodb-27017.sock
+Fri Nov  9 00:57:51 [interruptThread] shutdown: going to flush diaglog...
+Fri Nov  9 00:57:51 [interruptThread] shutdown: going to close sockets...
+Fri Nov  9 00:57:51 [interruptThread] shutdown: waiting for fs preallocator...
+Fri Nov  9 00:57:51 [interruptThread] shutdown: lock for final commit...
+Fri Nov  9 00:57:51 [interruptThread] shutdown: final commit...
+Fri Nov  9 00:57:51 [conn1] end connection 127.0.0.1:58523
+Fri Nov  9 00:57:51 [interruptThread] shutdown: closing all files...
+Fri Nov  9 00:57:51 [interruptThread] closeAllFiles() finished
+Fri Nov  9 00:57:51 [interruptThread] journalCleanup...
+Fri Nov  9 00:57:51 [interruptThread] removeJournalFiles
+Fri Nov  9 00:57:51 [interruptThread] shutdown: removing fs lock...
+Fri Nov  9 00:57:51 dbexit: really exiting now
